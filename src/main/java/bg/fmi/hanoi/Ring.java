@@ -27,7 +27,7 @@ public class Ring extends Graphic {
 		super.draw(g);
 	}
 
-	public void UpdatePosition(int stick, int ring) {
+	public void updatePosition(int stick, int ring) {
 		currStick = stick;
 		currRing = ring;
 	}

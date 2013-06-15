@@ -66,7 +66,7 @@ public class Game {
 
 					if (fromRingSize < toRingSize) {
 						Ring movingRing = (Ring) fromStick.RemoveTopChild();
-						movingRing.UpdatePosition(to, toRingId + 1);
+						movingRing.updatePosition(to, toRingId + 1);
 						toStick.AddChild(movingRing);
 
 						gameInfo.moves++;
@@ -81,7 +81,7 @@ public class Game {
 					}
 				} else {
 					Ring movingRing = (Ring) fromStick.RemoveTopChild();
-					movingRing.UpdatePosition(to, 0);
+					movingRing.updatePosition(to, 0);
 					toStick.AddChild(movingRing);
 
 					gameInfo.moves++;
