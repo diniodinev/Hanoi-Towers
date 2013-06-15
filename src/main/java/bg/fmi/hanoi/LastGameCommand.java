@@ -4,15 +4,15 @@ import javax.swing.JButton;
 
 public class LastGameCommand extends JButton implements ICommand {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public LastGameCommand(String caption) {
-		super(caption);
-	}
+    public LastGameCommand(String caption) {
+        super(caption);
+    }
 
-	@Override
-	public void Execute() {
-		Game.StartLastGame();
-	}
+    @Override
+    public void execute() {
+        Game.startLastGame();
+    }
 
 }

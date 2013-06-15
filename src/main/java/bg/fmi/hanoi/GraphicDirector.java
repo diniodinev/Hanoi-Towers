@@ -2,14 +2,14 @@ package main.java.bg.fmi.hanoi;
 
 public class GraphicDirector {
 
-	private IGraphicBuilder myBuilder;
+    private final IGraphicBuilder myBuilder;
 
-	public GraphicDirector(IGraphicBuilder builder) {
-		myBuilder = builder;
-	}
+    public GraphicDirector(IGraphicBuilder builder) {
+        myBuilder = builder;
+    }
 
-	public void ConstructGraphic() {
-		myBuilder.addSticks();
-		myBuilder.addRings();
-	}
+    public void constructGraphic() {
+        myBuilder.addSticks();
+        myBuilder.addRings();
+    }
 }

@@ -5,114 +5,118 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class Game {
-	private static GameState gameInfo = null;
-	private static JPanel myDrawPanel = null;
-	private static JPanel myControlPanel = null;
+    private static GameState gameInfo = null;
 
-	public static String GetPlayerName() {
-		if ((null != gameInfo) && (null != gameInfo.playerName)) {
-			return gameInfo.playerName;
-		} else {
-			return "Player 1";
-		}
-	}
+    private static JPanel myDrawPanel = null;
 
-	public static int GetMoves() {
-		if (null != gameInfo) {
-			return gameInfo.moves;
-		} else {
-			return 0;
-		}
-	}
+    private static JPanel myControlPanel = null;
 
-	public static void UpdateDrawView(Graphics g, JPanel myPanel) {
-		myDrawPanel = myPanel;
-		if ((null != gameInfo) && (null != gameInfo.gameDrawing)) {
-			gameInfo.gameDrawing.draw(g);
-		}
-	}
+    public static String getPlayerName() {
+        if ((gameInfo == null) || (gameInfo.playerName == null)) {
+            return "Player 1";
+        } else {
+            return gameInfo.playerName;
 
-	public static void UpdateControlView(Graphics g, JPanel myPanel) {
-		myControlPanel = myPanel;
-	}
+        }
+    }
 
-	public static void StartNewGame() {
-		gameInfo = new GameState();
-		IGraphicBuilder gBuilder = new DefaultBuilder();
-		GraphicDirector gDirector = new GraphicDirector(gBuilder);
-		gDirector.ConstructGraphic();
-		gameInfo.gameDrawing = gBuilder.GetGraphic();
-		if (null != myDrawPanel) {
-			myDrawPanel.repaint();
-		}
-		if (null != myControlPanel) {
-			myControlPanel.repaint();
-		}
-	}
+    public static int getMoves() {
+        if (null == gameInfo) {
+            return 0;
+        } else {
+            return gameInfo.moves;
+        }
 
-	public static boolean Move(int from, int to) {
-		if ((null != gameInfo) && (null != gameInfo.gameDrawing)) {
-			Stick fromStick = (Stick) gameInfo.gameDrawing.GetChild(from);
-			Stick toStick = (Stick) gameInfo.gameDrawing.GetChild(to);
+    }
 
-			int fromRingId = fromStick.TopChildId();
-			if (0 <= fromRingId) {
-				Ring fromRing = (Ring) fromStick.GetChild(fromRingId);
-				int toRingId = toStick.TopChildId();
-				if (0 <= toRingId) {
-					Ring toRing = (Ring) toStick.GetChild(toRingId);
-					int fromRingSize = fromRing.GetRingSize();
-					int toRingSize = toRing.GetRingSize();
+    public static void updateDrawView(Graphics g, JPanel myPanel) {
+        myDrawPanel = myPanel;
+        if ((null != gameInfo) && (null != gameInfo.gameDrawing)) {
+            gameInfo.gameDrawing.draw(g);
+        }
+    }
 
-					if (fromRingSize < toRingSize) {
-						Ring movingRing = (Ring) fromStick.RemoveTopChild();
-						movingRing.updatePosition(to, toRingId + 1);
-						toStick.AddChild(movingRing);
+    public static void updateControlView(Graphics g, JPanel myPanel) {
+        myControlPanel = myPanel;
+    }
 
-						gameInfo.moves++;
+    public static void startNewGame() {
+        gameInfo = new GameState();
+        IGraphicBuilder gBuilder = new DefaultBuilder();
+        GraphicDirector gDirector = new GraphicDirector(gBuilder);
+        gDirector.constructGraphic();
+        gameInfo.gameDrawing = gBuilder.getGraphic();
+        if (null != myDrawPanel) {
+            myDrawPanel.repaint();
+        }
+        if (null != myControlPanel) {
+            myControlPanel.repaint();
+        }
+    }
 
-						if (null != myDrawPanel) {
-							myDrawPanel.repaint();
-						}
-						if (null != myControlPanel) {
-							myControlPanel.repaint();
-						}
-						return true;
-					}
-				} else {
-					Ring movingRing = (Ring) fromStick.RemoveTopChild();
-					movingRing.updatePosition(to, 0);
-					toStick.AddChild(movingRing);
+    public static boolean move(int from, int to) {
+        if ((null != gameInfo) && (null != gameInfo.gameDrawing)) {
+            Stick fromStick = (Stick) gameInfo.gameDrawing.getChild(from);
+            Stick toStick = (Stick) gameInfo.gameDrawing.getChild(to);
 
-					gameInfo.moves++;
+            int fromRingId = fromStick.topChildId();
+            if (fromRingId >= 0) {
+                Ring fromRing = (Ring) fromStick.getChild(fromRingId);
+                int toRingId = toStick.topChildId();
+                if (toRingId >= 0) {
+                    Ring toRing = (Ring) toStick.getChild(toRingId);
+                    int fromRingSize = fromRing.getRingSize();
+                    int toRingSize = toRing.getRingSize();
 
-					if (null != myDrawPanel) {
-						myDrawPanel.repaint();
-					}
-					if (null != myControlPanel) {
-						myControlPanel.repaint();
-					}
-					return true;
-				}
-			}
-		}
+                    if (fromRingSize < toRingSize) {
+                        Ring movingRing = (Ring) fromStick.removeTopChild();
+                        movingRing.updatePosition(to, toRingId + 1);
+                        toStick.addChild(movingRing);
 
-		return false;
-	}
+                        gameInfo.moves++;
 
-	public static void StartLastGame() {
-		Memento newMemento = new Memento();
-		gameInfo = newMemento.GetState();
-		if (null != myDrawPanel) {
-			myDrawPanel.repaint();
-		}
-		if (null != myControlPanel) {
-			myControlPanel.repaint();
-		}
-	}
+                        if (null != myDrawPanel) {
+                            myDrawPanel.repaint();
+                        }
+                        if (null != myControlPanel) {
+                            myControlPanel.repaint();
+                        }
+                        return true;
+                    }
+                } else {
+                    Ring movingRing = (Ring) fromStick.removeTopChild();
+                    movingRing.updatePosition(to, 0);
+                    toStick.addChild(movingRing);
 
-	public static void StoreCurrentGame() {
-		Memento newMemento = new Memento();
-		newMemento.SetState(gameInfo);
-	}
+                    gameInfo.moves++;
+
+                    if (null != myDrawPanel) {
+                        myDrawPanel.repaint();
+                    }
+                    if (null != myControlPanel) {
+                        myControlPanel.repaint();
+                    }
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static void startLastGame() {
+        Memento newMemento = new Memento();
+        gameInfo = newMemento.getState();
+        if (null != myDrawPanel) {
+            myDrawPanel.repaint();
+        }
+        if (null != myControlPanel) {
+            myControlPanel.repaint();
+        }
+    }
+
+    public static void storeCurrentGame() {
+        Memento newMemento = new Memento();
+        newMemento.setState(gameInfo);
+    }
 }

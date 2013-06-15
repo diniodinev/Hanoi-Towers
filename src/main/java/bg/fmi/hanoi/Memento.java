@@ -15,82 +15,78 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class Memento {
-	private GameState memState;
-	private static String filename = "hanoigame.xml";
+    private GameState memState;
 
-	public Memento() {
-		memState = null;
-	}
+    private static String filename = "hanoigame.xml";
 
-	public void SetState(GameState newState) {
-		memState = newState;
+    public Memento() {
+        memState = null;
+    }
 
-		// create xml file
-		try {
-			DocumentBuilderFactory docFactory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+    public void setState(GameState newState) {
+        memState = newState;
 
-			// root elements
-			Document doc = docBuilder.newDocument();
+        // create xml file
+        try {
+            DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
-			Element rootElement = doc.createElement("game");
-			doc.appendChild(rootElement);
+            // root elements
+            Document doc = docBuilder.newDocument();
 
-			// staff elements
-			Element nameEl = doc.createElement("playerName");
-			rootElement.appendChild(nameEl);
-			nameEl.setTextContent(newState.playerName);
+            Element rootElement = doc.createElement("game");
+            doc.appendChild(rootElement);
 
-			Element movesEl = doc.createElement("moves");
-			rootElement.appendChild(movesEl);
-			movesEl.setTextContent(Integer.toString(newState.moves));
+            // staff elements
+            Element nameEl = doc.createElement("playerName");
+            rootElement.appendChild(nameEl);
+            nameEl.setTextContent(newState.playerName);
 
-			for (int stId = 0; stId < 3; stId++) {
-				if (null != newState.gameDrawing.GetChild(stId)) {
-					Element stickEl = doc.createElement("stick");
-					rootElement.appendChild(stickEl);
+            Element movesEl = doc.createElement("moves");
+            rootElement.appendChild(movesEl);
+            movesEl.setTextContent(Integer.toString(newState.moves));
 
-					for (int i = 0; i <= newState.gameDrawing.GetChild(stId)
-							.TopChildId(); i++) {
-						Element ringEl = doc.createElement("ring");
-						stickEl.appendChild(ringEl);
-						Ring ring = (Ring) newState.gameDrawing.GetChild(stId)
-								.GetChild(i);
-						ringEl.setTextContent(Integer.toString(ring
-								.GetRingSize()));
-					}
-				}
-			}
+            for (int stId = 0; stId < 3; stId++) {
+                if (null != newState.gameDrawing.getChild(stId)) {
+                    Element stickEl = doc.createElement("stick");
+                    rootElement.appendChild(stickEl);
 
-			// write the content into xml file
-			TransformerFactory transformerFactory = TransformerFactory
-					.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
+                    for (int i = 0; i <= newState.gameDrawing.getChild(stId).topChildId(); i++) {
+                        Element ringEl = doc.createElement("ring");
+                        stickEl.appendChild(ringEl);
+                        Ring ring = (Ring) newState.gameDrawing.getChild(stId).getChild(i);
+                        ringEl.setTextContent(Integer.toString(ring.getRingSize()));
+                    }
+                }
+            }
 
-			StreamResult result = new StreamResult(new File(filename));
-			transformer.transform(source, result);
+            // write the content into xml file
+            TransformerFactory transfFactory = TransformerFactory.newInstance();
+            Transformer transformer = transfFactory.newTransformer();
+            DOMSource source = new DOMSource(doc);
 
-		} catch (ParserConfigurationException pce) {
-			pce.printStackTrace();
-		} catch (TransformerException tfe) {
-			tfe.printStackTrace();
-		}
-	}
+            StreamResult result = new StreamResult(new File(filename));
+            transformer.transform(source, result);
 
-	public GameState GetState() {
-		if (null != memState) {
-			return memState;
-		} else {
-			ResumeBuilder gBuilder = new ResumeBuilder(filename);
-			GraphicDirector gDirector = new GraphicDirector(gBuilder);
-			gDirector.ConstructGraphic();
-			memState = new GameState();
-			memState.gameDrawing = gBuilder.GetGraphic();
-			memState.playerName = gBuilder.GetPlayerName();
-			memState.moves = gBuilder.GetMoves();
-			return memState;
-		}
-	}
+        } catch (ParserConfigurationException pce) {
+            pce.printStackTrace();
+        } catch (TransformerException tfe) {
+            tfe.printStackTrace();
+        }
+    }
+
+    public GameState getState() {
+        if (null == memState) {
+            ResumeBuilder gBuilder = new ResumeBuilder(filename);
+            GraphicDirector gDirector = new GraphicDirector(gBuilder);
+            gDirector.constructGraphic();
+            memState = new GameState();
+            memState.gameDrawing = gBuilder.getGraphic();
+            memState.playerName = gBuilder.getPlayerName();
+            memState.moves = gBuilder.getMoves();
+            return memState;
+        } else {
+            return memState;
+        }
+    }
 }

@@ -1,29 +1,35 @@
 apply plugin:'java'
 apply plugin:'eclipse'
-//apply plugin: 'checkstyle'
-//apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'groovy'
 apply plugin: 'pmd'
 
-repositories{
-	mavenCentral()
+repositories{ mavenCentral() }
+
+dependencies{ testCompile 'com.puppycrawl.tools:checkstyle:5.6' }
+
+checkstyle{
+	ignoreFailures = true
+}
+findbugsMain {
+	ignoreFailures = true
+	reports {
+		html { enabled = true }
+		xml.enabled = !html.enabled
+	}
 }
 
-dependencies{
-	testCompile 'com.puppycrawl.tools:checkstyle:5.6'
-	         	
+pmd { ignoreFailures = true
+	ruleSets = ['basic',  'braces', 'clone', 'coupling', 'codesize', 'design', 'migrating', 'naming', 'strictexception', 'strings', 'unusedcode']
+	
 }
 
-//findbugsMain {
-//	reports {
-//		html { enabled = true }
-//		xml.enabled = !html.enabled
-//	}
-//}
 task main(type: JavaExec, dependsOn: classes) {
 	description = 'This task will start the main class of the Towers of Hanoi'
 	group = 'Towers of Hanoi'
 	main = 'main.java.bg.fmi.hanoi.Hanoi'
 	classpath = sourceSets.main.runtimeClasspath
-	
+
 }
 

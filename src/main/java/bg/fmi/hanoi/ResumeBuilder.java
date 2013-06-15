@@ -12,108 +12,110 @@ import org.w3c.dom.NodeList;
 
 public class ResumeBuilder implements IGraphicBuilder {
 
-	private Graphic myGraphic = null;
-	private String xmlName;
-	private Element ePlayerName;
-	private Element eMoves;
-	private Element eStick1;
-	private Element eStick2;
-	private Element eStick3;
+    private Graphic myGraphic = null;
 
-	private String getTagValue(String sTag, Element eElement) {
-		NodeList nlList = eElement.getChildNodes();
-		Node nValue = (Node) nlList.item(0);
+    private String xmlName;
 
-		return nValue.getNodeValue();
-	}
+    private Element ePlayerName;
 
-	public ResumeBuilder(String filename) {
-		xmlName = filename;
+    private Element eMoves;
 
-		try {
+    private Element eStick1;
 
-			File fXmlFile = new File(xmlName);
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
-			doc.getDocumentElement().normalize();
+    private Element eStick2;
 
-			NodeList nList = doc.getElementsByTagName("playerName");
-			ePlayerName = (Element) nList.item(0);
-			nList = doc.getElementsByTagName("moves");
-			eMoves = (Element) nList.item(0);
-			nList = doc.getElementsByTagName("stick");
-			eStick1 = (Element) nList.item(0);
-			eStick2 = (Element) nList.item(1);
-			eStick3 = (Element) nList.item(2);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+    private Element eStick3;
 
-	@Override
-	public void addSticks() {
-		myGraphic = new Graphic();
-		for (int i = 0; i < 3; i++) {
-			Stick newStick = new Stick(i);
-			myGraphic.AddChild(newStick);
-		}
+    private String getTagValue(String sTag, Element eElement) {
+        NodeList nlList = eElement.getChildNodes();
+        Node nValue = (Node) nlList.item(0);
 
-	}
+        return nValue.getNodeValue();
+    }
 
-	@Override
-	public void addRings() {
+    public ResumeBuilder(String filename) {
+        xmlName = filename;
 
-		Graphic myStick1 = myGraphic.GetChild(0);
-		NodeList nList = eStick1.getElementsByTagName("ring");
-		for (int temp = 0; temp < nList.getLength(); temp++) {
-			Node nNode = nList.item(temp);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nNode;
-				Ring newRing = new Ring(Integer.parseInt(getTagValue("ring",
-						eElement)), 0, temp);
-				myStick1.AddChild(newRing);
-			}
-		}
+        try {
 
-		Graphic myStick2 = myGraphic.GetChild(1);
-		nList = eStick2.getElementsByTagName("ring");
-		for (int temp = 0; temp < nList.getLength(); temp++) {
-			Node nNode = nList.item(temp);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nNode;
-				Ring newRing = new Ring(Integer.parseInt(getTagValue("ring",
-						eElement)), 1, temp);
-				myStick2.AddChild(newRing);
-			}
-		}
+            File fXmlFile = new File(xmlName);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(fXmlFile);
+            doc.getDocumentElement().normalize();
 
-		Graphic myStick3 = myGraphic.GetChild(2);
-		nList = eStick3.getElementsByTagName("ring");
-		for (int temp = 0; temp < nList.getLength(); temp++) {
-			Node nNode = nList.item(temp);
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element eElement = (Element) nNode;
-				Ring newRing = new Ring(Integer.parseInt(getTagValue("ring",
-						eElement)), 2, temp);
-				myStick3.AddChild(newRing);
-			}
-		}
-	}
+            NodeList nList = doc.getElementsByTagName("playerName");
+            ePlayerName = (Element) nList.item(0);
+            nList = doc.getElementsByTagName("moves");
+            eMoves = (Element) nList.item(0);
+            nList = doc.getElementsByTagName("stick");
+            eStick1 = (Element) nList.item(0);
+            eStick2 = (Element) nList.item(1);
+            eStick3 = (Element) nList.item(2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-	@Override
-	public Graphic GetGraphic() {
-		return myGraphic;
-	}
+    @Override
+    public void addSticks() {
+        myGraphic = new Graphic();
+        for (int i = 0; i < 3; i++) {
+            Stick newStick = new Stick(i);
+            myGraphic.addChild(newStick);
+        }
 
-	public String GetPlayerName() {
-		return getTagValue("firstname", ePlayerName);
-	}
+    }
 
-	public int GetMoves() {
+    @Override
+    public void addRings() {
 
-		return Integer.parseInt(getTagValue("firstname", eMoves));
-	}
+        Graphic myStick1 = myGraphic.getChild(0);
+        NodeList nList = eStick1.getElementsByTagName("ring");
+        for (int temp = 0; temp < nList.getLength(); temp++) {
+            Node nNode = nList.item(temp);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                Ring newRing = new Ring(Integer.parseInt(getTagValue("ring", eElement)), 0, temp);
+                myStick1.addChild(newRing);
+            }
+        }
+
+        Graphic myStick2 = myGraphic.getChild(1);
+        nList = eStick2.getElementsByTagName("ring");
+        for (int temp = 0; temp < nList.getLength(); temp++) {
+            Node nNode = nList.item(temp);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                Ring newRing = new Ring(Integer.parseInt(getTagValue("ring", eElement)), 1, temp);
+                myStick2.addChild(newRing);
+            }
+        }
+
+        Graphic myStick3 = myGraphic.getChild(2);
+        nList = eStick3.getElementsByTagName("ring");
+        for (int temp = 0; temp < nList.getLength(); temp++) {
+            Node nNode = nList.item(temp);
+            if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                Element eElement = (Element) nNode;
+                Ring newRing = new Ring(Integer.parseInt(getTagValue("ring", eElement)), 2, temp);
+                myStick3.addChild(newRing);
+            }
+        }
+    }
+
+    @Override
+    public Graphic getGraphic() {
+        return myGraphic;
+    }
+
+    public String getPlayerName() {
+        return getTagValue("firstname", ePlayerName);
+    }
+
+    public int getMoves() {
+
+        return Integer.parseInt(getTagValue("firstname", eMoves));
+    }
 
 }

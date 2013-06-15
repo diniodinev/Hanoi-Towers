@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.util.Vector;
 
 public class Graphic {
-	private Vector<Graphic> children;
+    private Vector<Graphic> children;
 
 	public Graphic() {
 		children = new Vector<Graphic>();
@@ -16,19 +16,19 @@ public class Graphic {
 		}
 	}
 
-	public void AddChild(Graphic newChild) {
+	public void addChild(Graphic newChild) {
 		children.add(newChild);
 	}
 
-	public Graphic GetChild(int i) {
+	public Graphic getChild(int i) {
 		return children.get(i);
 	}
 
-	public int TopChildId() {
+	public int topChildId() {
 		return children.size() - 1;
 	}
 
-	public Graphic RemoveTopChild() {
+	public Graphic removeTopChild() {
 		return children.remove(children.size() - 1);
 	}
 }
