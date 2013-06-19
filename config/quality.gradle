@@ -1,0 +1,19 @@
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: 'pmd'
+
+checkstyle{
+	ignoreFailures = true
+}
+findbugsMain {
+	ignoreFailures = true
+	reports {
+		html { enabled = true }
+		xml.enabled = !html.enabled
+	}
+}
+
+pmd { ignoreFailures = true
+	ruleSets = ['basic',  'braces', 'clone', 'coupling', 'codesize', 'design', 'migrating', 'naming', 'strictexception', 'strings', 'unusedcode']
+	
+}
