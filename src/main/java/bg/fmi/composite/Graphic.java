@@ -8,7 +8,7 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.composite;
 
 import java.awt.Graphics;
 import java.util.Vector;
@@ -16,29 +16,29 @@ import java.util.Vector;
 public class Graphic {
     private Vector<Graphic> children;
 
-	public Graphic() {
-		children = new Vector<Graphic>();
-	}
+    public Graphic() {
+        children = new Vector<Graphic>();
+    }
 
-	public void draw(Graphics g) {
-		for (int i = 0; i < children.size(); i++) {
-			children.elementAt(i).draw(g);
-		}
-	}
+    public void draw(Graphics g) {
+        for (int i = 0; i < children.size(); i++) {
+            children.elementAt(i).draw(g);
+        }
+    }
 
-	public void addChild(Graphic newChild) {
-		children.add(newChild);
-	}
+    public void addChild(Graphic newChild) {
+        children.add(newChild);
+    }
 
-	public Graphic getChild(int i) {
-		return children.get(i);
-	}
+    public Graphic getChild(int i) {
+        return children.get(i);
+    }
 
-	public int topChildId() {
-		return children.size() - 1;
-	}
+    public int topChildId() {
+        return children.size() - 1;
+    }
 
-	public Graphic removeTopChild() {
-		return children.remove(children.size() - 1);
-	}
+    public Graphic removeTopChild() {
+        return children.remove(children.size() - 1);
+    }
 }

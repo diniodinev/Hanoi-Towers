@@ -8,18 +8,11 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.command;
 
-public class GraphicDirector {
-
-    private final IGraphicBuilder myBuilder;
-
-    public GraphicDirector(IGraphicBuilder builder) {
-        myBuilder = builder;
-    }
-
-    public void constructGraphic() {
-        myBuilder.addSticks();
-        myBuilder.addRings();
-    }
+/*
+ * Interface for declaration of operation execute
+ */
+public interface ICommand {
+    public void execute();
 }

@@ -8,25 +8,18 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.builder;
 
-import java.awt.Color;
-import java.awt.Graphics;
+public class GraphicDirector {
 
-public class Stick extends Graphic {
-    private final int currStick;
+    private final IGraphicBuilder myBuilder;
 
-    public Stick(int stick) {
-        currStick = stick;
+    public GraphicDirector(IGraphicBuilder builder) {
+        myBuilder = builder;
     }
 
-    public void draw(Graphics stickGraphic) {
-        // Draw Stick
-        stickGraphic.setColor(Color.black);
-        // outline
-        stickGraphic.drawRect((currStick) * 100 + 95, 100, 10, 200);
-        stickGraphic.fillRect((currStick) * 100 + 96, 101, 9, 199);
-
-        super.draw(stickGraphic);
+    public void constructGraphic() {
+        myBuilder.addSticks();
+        myBuilder.addRings();
     }
 }

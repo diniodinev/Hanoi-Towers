@@ -8,21 +8,28 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.command;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
-public class NewGameCommand extends JButton implements ICommand {
+import main.java.bg.fmi.hanoi.Game;
+
+public class ExitGameCommand extends JButton implements ICommand {
 
     private static final long serialVersionUID = 1L;
 
-    public NewGameCommand(String caption) {
+    public ExitGameCommand(String caption) {
         super(caption);
     }
 
     @Override
     public void execute() {
-        Game.startNewGame();
+        try {
+            Game.storeCurrentGame();
+            System.exit(0);
+        } catch (NullPointerException exception) {
+            JOptionPane.showMessageDialog(null, "To save game first you should start one.");
+        }
     }
-
 }

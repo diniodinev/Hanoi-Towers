@@ -8,7 +8,7 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.composite;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,6 +20,13 @@ public class Ring extends Graphic {
 
     private int currStick;
 
+    
+    /**
+     * @param size of the ring, this variable cannot be changed after the ring has 
+     * been created
+     * @param stick the number of the stick, where the ring will be put 
+     * @param ring the position of the ring in the stick
+     */
     public Ring(int size, int stick, int ring) {
         ringSize = size;
         currStick = stick;

@@ -8,21 +8,25 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.composite;
 
-import javax.swing.JButton;
+import java.awt.Color;
+import java.awt.Graphics;
 
-public class LastGameCommand extends JButton implements ICommand {
+public class Stick extends Graphic {
+    private final int currStick;
 
-    private static final long serialVersionUID = 1L;
-
-    public LastGameCommand(String caption) {
-        super(caption);
+    public Stick(int stick) {
+        currStick = stick;
     }
 
-    @Override
-    public void execute() {
-        Game.startLastGame();
-    }
+    public void draw(Graphics stickGraphic) {
+        // Draw Stick
+        stickGraphic.setColor(Color.black);
+        // outline
+        stickGraphic.drawRect((currStick) * 100 + 95, 100, 10, 200);
+        stickGraphic.fillRect((currStick) * 100 + 96, 101, 9, 199);
 
+        super.draw(stickGraphic);
+    }
 }

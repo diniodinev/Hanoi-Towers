@@ -19,6 +19,13 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+import main.java.bg.fmi.command.ExitGameCommand;
+import main.java.bg.fmi.command.ICommand;
+import main.java.bg.fmi.command.LastGameCommand;
+import main.java.bg.fmi.command.MoveGameCommand;
+import main.java.bg.fmi.command.NewGameCommand;
 
 public class ControlView extends JPanel implements ActionListener {
 
@@ -29,11 +36,11 @@ public class ControlView extends JPanel implements ActionListener {
     JLabel lblPlayer;
 
     JLabel lblMoves;
-
+    
     public ControlView() {
         super(new GridLayout(7, 1));
         setPreferredSize(new Dimension(200, 400));
-        lblPlayer = new JLabel("Player: ");
+        lblPlayer = new JLabel("Player's name: ");
         add(lblPlayer);
         lblMoves = new JLabel("Moves: ");
         add(lblMoves);
@@ -55,8 +62,8 @@ public class ControlView extends JPanel implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent arg0) {
-        ICommand cmd = (ICommand) arg0.getSource();
+    public void actionPerformed(ActionEvent event) {
+        ICommand cmd = (ICommand) event.getSource();
         if (cmd instanceof MoveGameCommand) {
             MoveGameCommand mvCmd = (MoveGameCommand) cmd;
             int moveIndex = moveComboBox.getSelectedIndex();
@@ -92,7 +99,7 @@ public class ControlView extends JPanel implements ActionListener {
 
     public void paint(Graphics view) {
         super.paint(view);
-        lblPlayer.setText("Player: " + Game.getPlayerName());
+        lblPlayer.setText("Player's name: " + Game.getPlayerName());
         lblMoves.setText("Moves: " + Game.getMoves());
         Game.updateControlView(view, this);
     }

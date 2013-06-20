@@ -8,12 +8,23 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.command;
 
-public interface IGraphicBuilder {
-    public void addSticks();
+import javax.swing.JButton;
 
-    public void addRings();
+import main.java.bg.fmi.hanoi.Game;
 
-    public Graphic getGraphic();
+public class LastGameCommand extends JButton implements ICommand {
+
+    private static final long serialVersionUID = 1L;
+
+    public LastGameCommand(String caption) {
+        super(caption);
+    }
+
+    @Override
+    public void execute() {
+        Game.startLastGame();
+    }
+
 }

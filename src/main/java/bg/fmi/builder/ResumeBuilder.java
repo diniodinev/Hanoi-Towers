@@ -8,12 +8,16 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.builder;
 
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import main.java.bg.fmi.composite.Graphic;
+import main.java.bg.fmi.composite.Ring;
+import main.java.bg.fmi.composite.Stick;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -36,11 +40,8 @@ public class ResumeBuilder implements IGraphicBuilder {
 
     private Element eStick3;
 
-    private String getTagValue(String sTag, Element eElement) {
-        NodeList nlList = eElement.getChildNodes();
-        Node nValue = (Node) nlList.item(0);
-
-        return nValue.getNodeValue();
+    private String getTagValue(Element eElement) {
+        return ((Node) eElement.getChildNodes().item(0)).getNodeValue();
     }
 
     public ResumeBuilder(String filename) {
@@ -86,7 +87,7 @@ public class ResumeBuilder implements IGraphicBuilder {
             Node nNode = nList.item(temp);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
-                Ring newRing = new Ring(Integer.parseInt(getTagValue("ring", eElement)), 0, temp);
+                Ring newRing = new Ring(Integer.parseInt(getTagValue(eElement)), 0, temp);
                 myStick1.addChild(newRing);
             }
         }
@@ -97,7 +98,7 @@ public class ResumeBuilder implements IGraphicBuilder {
             Node nNode = nList.item(temp);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
-                Ring newRing = new Ring(Integer.parseInt(getTagValue("ring", eElement)), 1, temp);
+                Ring newRing = new Ring(Integer.parseInt(getTagValue(eElement)), 1, temp);
                 myStick2.addChild(newRing);
             }
         }
@@ -108,7 +109,7 @@ public class ResumeBuilder implements IGraphicBuilder {
             Node nNode = nList.item(temp);
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
-                Ring newRing = new Ring(Integer.parseInt(getTagValue("ring", eElement)), 2, temp);
+                Ring newRing = new Ring(Integer.parseInt(getTagValue(eElement)), 2, temp);
                 myStick3.addChild(newRing);
             }
         }
@@ -120,12 +121,11 @@ public class ResumeBuilder implements IGraphicBuilder {
     }
 
     public String getPlayerName() {
-        return getTagValue("firstname", ePlayerName);
+        return getTagValue(ePlayerName);
     }
 
     public int getMoves() {
-
-        return Integer.parseInt(getTagValue("firstname", eMoves));
+        return Integer.parseInt(getTagValue(eMoves));
     }
 
 }

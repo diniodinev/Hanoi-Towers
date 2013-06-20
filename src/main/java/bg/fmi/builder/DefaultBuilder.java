@@ -8,7 +8,11 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.builder;
+
+import main.java.bg.fmi.composite.Graphic;
+import main.java.bg.fmi.composite.Ring;
+import main.java.bg.fmi.composite.Stick;
 
 public class DefaultBuilder implements IGraphicBuilder {
 

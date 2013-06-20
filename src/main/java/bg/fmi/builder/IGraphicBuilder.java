@@ -8,18 +8,14 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.builder;
 
-public class GameState {
-    public Graphic gameDrawing;
+import main.java.bg.fmi.composite.Graphic;
 
-    public int moves;
+public interface IGraphicBuilder {
+    public void addSticks();
 
-    public String playerName;
+    public void addRings();
 
-    public GameState() {
-        gameDrawing = null;
-        moves = 0;
-        playerName = "Player 1";
-    }
+    public Graphic getGraphic();
 }

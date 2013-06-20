@@ -8,7 +8,7 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package main.java.bg.fmi.memento;
 
 import java.io.File;
 
@@ -21,19 +21,26 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import main.java.bg.fmi.builder.GraphicDirector;
+import main.java.bg.fmi.builder.ResumeBuilder;
+import main.java.bg.fmi.composite.Ring;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class Memento {
     private GameState memState;
 
-    private static String filename = "hanoigame.xml";
+    private static final String filename = "hanoigame.xml";
 
     public Memento() {
         memState = null;
     }
 
     public void setState(GameState newState) {
+        if (newState == null) {
+            return;
+        }
         memState = newState;
 
         // create xml file
@@ -50,21 +57,22 @@ public class Memento {
             // staff elements
             Element nameEl = doc.createElement("playerName");
             rootElement.appendChild(nameEl);
-            nameEl.setTextContent(newState.playerName);
+            nameEl.setTextContent(newState.getPlayerName());
 
             Element movesEl = doc.createElement("moves");
             rootElement.appendChild(movesEl);
-            movesEl.setTextContent(Integer.toString(newState.moves));
+            movesEl.setTextContent(Integer.toString(newState.getMoves()));
 
+            // Add elemets for the Hanoi Sticks
             for (int stId = 0; stId < 3; stId++) {
-                if (null != newState.gameDrawing.getChild(stId)) {
+                if (newState.getGameDrawing().getChild(stId) != null) {
                     Element stickEl = doc.createElement("stick");
                     rootElement.appendChild(stickEl);
 
-                    for (int i = 0; i <= newState.gameDrawing.getChild(stId).topChildId(); i++) {
+                    for (int i = 0; i <= newState.getGameDrawing().getChild(stId).topChildId(); i++) {
                         Element ringEl = doc.createElement("ring");
                         stickEl.appendChild(ringEl);
-                        Ring ring = (Ring) newState.gameDrawing.getChild(stId).getChild(i);
+                        Ring ring = (Ring) newState.getGameDrawing().getChild(stId).getChild(i);
                         ringEl.setTextContent(Integer.toString(ring.getRingSize()));
                     }
                 }
@@ -86,14 +94,14 @@ public class Memento {
     }
 
     public GameState getState() {
-        if (null == memState) {
+        if (memState == null) {
             ResumeBuilder gBuilder = new ResumeBuilder(filename);
             GraphicDirector gDirector = new GraphicDirector(gBuilder);
             gDirector.constructGraphic();
             memState = new GameState();
-            memState.gameDrawing = gBuilder.getGraphic();
-            memState.playerName = gBuilder.getPlayerName();
-            memState.moves = gBuilder.getMoves();
+            memState.setGameDrawing(gBuilder.getGraphic());
+            memState.setPlayerName(gBuilder.getPlayerName());
+            memState.setMoves(gBuilder.getMoves());
             return memState;
         } else {
             return memState;
