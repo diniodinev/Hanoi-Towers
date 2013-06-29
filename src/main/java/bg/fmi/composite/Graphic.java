@@ -12,17 +12,17 @@ package main.java.bg.fmi.composite;
 
 import java.awt.Graphics;
 import java.util.Vector;
-
+//Structoral pattern
 public class Graphic {
-    private Vector<Graphic> children;
+    private final Vector<Graphic> children;
 
     public Graphic() {
         children = new Vector<Graphic>();
     }
 
-    public void draw(Graphics g) {
+    public void draw(Graphics graphics) {
         for (int i = 0; i < children.size(); i++) {
-            children.elementAt(i).draw(g);
+            children.elementAt(i).draw(graphics);
         }
     }
 
@@ -30,8 +30,8 @@ public class Graphic {
         children.add(newChild);
     }
 
-    public Graphic getChild(int i) {
-        return children.get(i);
+    public Graphic getChild(int childNumber) {
+        return children.get(childNumber);
     }
 
     public int topChildId() {

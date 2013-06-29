@@ -27,11 +27,11 @@ import main.java.bg.fmi.composite.Ring;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
+//behavioral pattern
 public class Memento {
     private GameState memState;
 
-    private static final String filename = "hanoigame.xml";
+    private static final String FILENAME = "hanoigame.xml";
 
     public Memento() {
         memState = null;
@@ -83,7 +83,7 @@ public class Memento {
             Transformer transformer = transfFactory.newTransformer();
             DOMSource source = new DOMSource(doc);
 
-            StreamResult result = new StreamResult(new File(filename));
+            StreamResult result = new StreamResult(new File(FILENAME));
             transformer.transform(source, result);
 
         } catch (ParserConfigurationException pce) {
@@ -95,7 +95,7 @@ public class Memento {
 
     public GameState getState() {
         if (memState == null) {
-            ResumeBuilder gBuilder = new ResumeBuilder(filename);
+            ResumeBuilder gBuilder = new ResumeBuilder(FILENAME);
             GraphicDirector gDirector = new GraphicDirector(gBuilder);
             gDirector.constructGraphic();
             memState = new GameState();

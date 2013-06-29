@@ -28,8 +28,6 @@ public class ResumeBuilder implements IGraphicBuilder {
 
     private Graphic myGraphic = null;
 
-    private String xmlName;
-
     private Element ePlayerName;
 
     private Element eMoves;
@@ -45,6 +43,7 @@ public class ResumeBuilder implements IGraphicBuilder {
     }
 
     public ResumeBuilder(String filename) {
+        String xmlName;
         xmlName = filename;
 
         try {

@@ -25,25 +25,35 @@ public final class Hanoi extends JFrame {
 
     private Hanoi() {
         super("Tower of Hanoi");
-        
-        //Put JPanels in the conteiner
+        JPanel parentPanel = new JPanel();
+        parentPanel.setPreferredSize(new Dimension(400, 400));
+
+        // Put JPanels in the conteiner
         Container content = getContentPane();
         content.setBackground(Color.lightGray);
+
         ControlView controlArea = new ControlView();
         content.add(controlArea, BorderLayout.WEST);
-        DrawingView drawingArea = new DrawingView();
-        content.add(drawingArea, BorderLayout.EAST);
 
-        //Save the state of the game before close it with "Close button"
+        DrawingView drawingArea = new DrawingView();
+        parentPanel.add(drawingArea, BorderLayout.SOUTH);
+        ButtonView buttonsArea = new ButtonView();
+        parentPanel.add(buttonsArea, BorderLayout.NORTH);
+
+         content.add(parentPanel,BorderLayout.EAST);
+
+        // Save the state of the game before close it with "Close button"
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        this.addWindowListener( new WindowAdapter() {
+        this.addWindowListener(new WindowAdapter() {
             @Override
-            public void windowClosing(WindowEvent we) {
+            public void windowClosing(WindowEvent windowEvent) {
+                if(Game.getGameInfo() != null){
                 Game.storeCurrentGame();
+                }
                 System.exit(0);
             }
-        } );
-        
+        });
+
         this.pack();
         this.setResizable(false);
         this.setVisible(true);

@@ -53,14 +53,14 @@ public class Game {
 
     }
 
-    public static void updateDrawView(Graphics g, JPanel myPanel) {
+    public static void updateDrawView(Graphics graphics, JPanel myPanel) {
         myDrawPanel = myPanel;
         if ((null != gameInfo) && (null != gameInfo.getGameDrawing())) {
-            gameInfo.getGameDrawing().draw(g);
+            gameInfo.getGameDrawing().draw(graphics);
         }
     }
 
-    public static void updateControlView(Graphics g, JPanel myPanel) {
+    public static void updateControlView(Graphics graphics, JPanel myPanel) {
         myControlPanel = myPanel;
     }
 
@@ -183,4 +183,9 @@ public class Game {
         }
         return true;
     }
+
+    public static GameState getGameInfo() {
+        return gameInfo;
+    }
+    
 }

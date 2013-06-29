@@ -31,25 +31,20 @@ public class ControlView extends JPanel implements ActionListener {
 
     private static final long serialVersionUID = 234523452345245L;
 
-    private final JComboBox<String> moveComboBox;
+   // private final JComboBox<String> moveComboBox;
 
     JLabel lblPlayer;
 
     JLabel lblMoves;
     
     public ControlView() {
-        super(new GridLayout(7, 1));
+        super(new GridLayout(5, 1));
         setPreferredSize(new Dimension(200, 400));
         lblPlayer = new JLabel("Player's name: ");
         add(lblPlayer);
         lblMoves = new JLabel("Moves: ");
         add(lblMoves);
-        final String movesList[] = { "1->2", "2->1", "1->3", "3->1", "2->3", "3->2" };
-        moveComboBox = new JComboBox<String>(movesList);
-        add(moveComboBox);
-        MoveGameCommand btnMove = new MoveGameCommand("Move");
-        btnMove.addActionListener(this);
-        add(btnMove);
+     
         NewGameCommand btnNew = new NewGameCommand("New");
         btnNew.addActionListener(this);
         add(btnNew);
@@ -64,36 +59,7 @@ public class ControlView extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         ICommand cmd = (ICommand) event.getSource();
-        if (cmd instanceof MoveGameCommand) {
-            MoveGameCommand mvCmd = (MoveGameCommand) cmd;
-            int moveIndex = moveComboBox.getSelectedIndex();
-            switch (moveIndex) {
-                case 0:
-                    mvCmd.mvFrom = 0;
-                    mvCmd.mvTo = 1;
-                    break;
-                case 1:
-                    mvCmd.mvFrom = 1;
-                    mvCmd.mvTo = 0;
-                    break;
-                case 2:
-                    mvCmd.mvFrom = 0;
-                    mvCmd.mvTo = 2;
-                    break;
-                case 3:
-                    mvCmd.mvFrom = 2;
-                    mvCmd.mvTo = 0;
-                    break;
-                case 4:
-                    mvCmd.mvFrom = 1;
-                    mvCmd.mvTo = 2;
-                    break;
-                case 5:
-                    mvCmd.mvFrom = 2;
-                    mvCmd.mvTo = 1;
-                    break;
-            }
-        }
+     
         cmd.execute();
     }
 
