@@ -22,3 +22,7 @@ task main(type: JavaExec, dependsOn: classes) {
 task first <<{
    description = 'This is my first task'
 }
+
+task wrapper(type:Wrapper) {
+	gradleVersion = '2.0'
+}
