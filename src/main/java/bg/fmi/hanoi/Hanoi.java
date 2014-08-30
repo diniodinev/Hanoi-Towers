@@ -47,7 +47,7 @@ public final class Hanoi extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
-                if(Game.getGameInfo() != null){
+                if(Game.getGameInfo() != null) {
                 Game.storeCurrentGame();
                 }
                 System.exit(0);

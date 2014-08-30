@@ -2,7 +2,7 @@ apply plugin: 'checkstyle'
 apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
-checkstyle{
+checkstyle {
 	ignoreFailures = true
 }
 findbugsMain {
@@ -13,7 +13,14 @@ findbugsMain {
 	}
 }
 
-pmd { ignoreFailures = true
-	ruleSets = ['basic',  'braces', 'clone', 'coupling', 'codesize', 'design', 'migrating', 'naming', 'strictexception', 'strings', 'unusedcode']
-	
+pmd {
+    toolVersion = '5.1.1'
+    ignoreFailures = true
+}
+pmdMain {
+    ruleSetFiles = files("config/pmd/pmd-base.xml")
+}
+
+pmdTest {
+    ruleSetFiles = files("config/pmd/pmd-test.xml")
 }

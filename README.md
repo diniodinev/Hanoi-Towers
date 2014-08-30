@@ -9,4 +9,10 @@ This is the game *Towers of Hanoi* written by me for my **Software Design Patter
 To run the application just type
 
 	gradlew main
+on Windows or:
+
+	./gradlew main
+
+on Linux
+
 

@@ -14,12 +14,12 @@ import javax.swing.JPanel;
 import bg.fmi.command.ICommand;
 import bg.fmi.command.MoveGameCommand;
 
-public class ButtonView extends JPanel implements ActionListener{
+public class ButtonView extends JPanel implements ActionListener {
     private static final long serialVersionUID = 3534646345L;
 
     private final MoveGameCommand buttonsArray[] = new MoveGameCommand[6];
 
-    private final char buttonText[] = { '<', '>', '<', '>', '<', '>' };
+    private final char buttonText[] = {'<', '>', '<', '>', '<', '>'};
 
     public ButtonView() {
         super(new GridLayout(1, 6));

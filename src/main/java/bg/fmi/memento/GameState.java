@@ -28,7 +28,7 @@ public class GameState {
     }
 
     /**
-     * Set method for the playerName
+     * Set method for the playerName.
      * @param playerName
      */
     public void setPlayerName(String playerName) {

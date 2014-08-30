@@ -33,7 +33,7 @@ public class DrawingView extends JPanel {
         super();
         setPreferredSize(new Dimension(400, 360));
         try {
-            image = ImageIO.read(new File(System.getProperty("user.dir")+"\\images\\background.jpg"));
+            image = ImageIO.read(new File(System.getProperty("user.dir") + "\\images\\background.jpg"));
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
