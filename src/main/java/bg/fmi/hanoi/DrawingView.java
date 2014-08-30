@@ -8,7 +8,7 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package bg.fmi.hanoi;
 
 import java.awt.Color;
 import java.awt.Dimension;

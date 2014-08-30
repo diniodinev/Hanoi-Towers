@@ -5,4 +5,4 @@
  * @author %Dinio Dinev%
  *
  */
-package main.java.bg.fmi.composite;
+package bg.fmi.composite;

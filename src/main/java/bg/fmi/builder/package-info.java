@@ -1,2 +1,2 @@
 
-package main.java.bg.fmi.builder;
+package bg.fmi.builder;

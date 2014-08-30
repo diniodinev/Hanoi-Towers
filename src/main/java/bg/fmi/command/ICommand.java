@@ -8,7 +8,7 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.command;
+package bg.fmi.command;
 
 /*
  * Interface for declaration of operation execute

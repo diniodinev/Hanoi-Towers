@@ -8,21 +8,21 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package bg.fmi.hanoi;
 
 import java.awt.Graphics;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import main.java.bg.fmi.builder.DefaultBuilder;
-import main.java.bg.fmi.builder.GraphicDirector;
-import main.java.bg.fmi.builder.IGraphicBuilder;
-import main.java.bg.fmi.composite.Graphic;
-import main.java.bg.fmi.composite.Ring;
-import main.java.bg.fmi.composite.Stick;
-import main.java.bg.fmi.memento.GameState;
-import main.java.bg.fmi.memento.Memento;
+import bg.fmi.builder.DefaultBuilder;
+import bg.fmi.builder.GraphicDirector;
+import bg.fmi.builder.IGraphicBuilder;
+import bg.fmi.composite.Graphic;
+import bg.fmi.composite.Ring;
+import bg.fmi.composite.Stick;
+import bg.fmi.memento.GameState;
+import bg.fmi.memento.Memento;
 
 public class Game {
     private static GameState gameInfo = null;

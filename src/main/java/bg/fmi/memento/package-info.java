@@ -5,4 +5,4 @@
  * @author %Dinio Dinev%
  *
  */
-package main.java.bg.fmi.memento;
+package bg.fmi.memento;

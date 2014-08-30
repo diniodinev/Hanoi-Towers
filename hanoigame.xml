@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<game>
-	<playerName>dinio</playerName>
-	<moves>0</moves>
-	<stick>
-		<ring>5</ring>
-		<ring>4</ring>
-		<ring>3</ring>
-		<ring>2</ring>
-		<ring>1</ring>
-	</stick>
-	<stick />
-	<stick />
-</game>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><game><playerName>dinio</playerName><moves>2</moves><stick><ring>5</ring><ring>4</ring><ring>3</ring></stick><stick><ring>1</ring></stick><stick><ring>2</ring></stick></game>

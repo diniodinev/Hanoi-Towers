@@ -8,7 +8,7 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.builder;
+package bg.fmi.builder;
 
 public class GraphicDirector {
 

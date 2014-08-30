@@ -8,11 +8,11 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.command;
+package bg.fmi.command;
 
 import javax.swing.JButton;
 
-import main.java.bg.fmi.hanoi.Game;
+import bg.fmi.hanoi.Game;
 
 public class MoveGameCommand extends JButton implements ICommand {
 

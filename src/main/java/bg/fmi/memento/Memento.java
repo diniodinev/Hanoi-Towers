@@ -8,7 +8,7 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.memento;
+package bg.fmi.memento;
 
 import java.io.File;
 
@@ -21,9 +21,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import main.java.bg.fmi.builder.GraphicDirector;
-import main.java.bg.fmi.builder.ResumeBuilder;
-import main.java.bg.fmi.composite.Ring;
+import bg.fmi.builder.GraphicDirector;
+import bg.fmi.builder.ResumeBuilder;
+import bg.fmi.composite.Ring;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

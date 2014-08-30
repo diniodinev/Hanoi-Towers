@@ -1,26 +1,19 @@
 apply plugin:'java'
 apply plugin:'eclipse'
+apply plugin:'idea'
 apply from:'config/quality.gradle'
 
 repositories{ 
     mavenCentral() 
     }
 
-//dependencies{ testCompile 'com.puppycrawl.tools:checkstyle:5.6' }
-
-
 
 task main(type: JavaExec, dependsOn: classes) {
 	description = 'This task will start the main class of the Towers of Hanoi'
 	group = 'Towers of Hanoi'
-	main = 'main.java.bg.fmi.hanoi.Hanoi'
+	main = 'bg.fmi.hanoi.Hanoi'
 	classpath = sourceSets.main.runtimeClasspath
 
-}
-
-
-task first <<{
-   description = 'This is my first task'
 }
 
 task wrapper(type:Wrapper) {

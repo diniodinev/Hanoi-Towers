@@ -1,4 +1,4 @@
-package main.java.bg.fmi.hanoi;
+package bg.fmi.hanoi;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,8 +11,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import main.java.bg.fmi.command.ICommand;
-import main.java.bg.fmi.command.MoveGameCommand;
+import bg.fmi.command.ICommand;
+import bg.fmi.command.MoveGameCommand;
 
 public class ButtonView extends JPanel implements ActionListener{
     private static final long serialVersionUID = 3534646345L;

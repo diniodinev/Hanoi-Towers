@@ -8,7 +8,7 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.composite;
+package bg.fmi.composite;
 
 import java.awt.Graphics;
 import java.util.Vector;

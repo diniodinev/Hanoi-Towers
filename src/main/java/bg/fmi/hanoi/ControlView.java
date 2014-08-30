@@ -8,7 +8,7 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.hanoi;
+package bg.fmi.hanoi;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -21,11 +21,11 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import main.java.bg.fmi.command.ExitGameCommand;
-import main.java.bg.fmi.command.ICommand;
-import main.java.bg.fmi.command.LastGameCommand;
-import main.java.bg.fmi.command.MoveGameCommand;
-import main.java.bg.fmi.command.NewGameCommand;
+import bg.fmi.command.ExitGameCommand;
+import bg.fmi.command.ICommand;
+import bg.fmi.command.LastGameCommand;
+import bg.fmi.command.MoveGameCommand;
+import bg.fmi.command.NewGameCommand;
 
 public class ControlView extends JPanel implements ActionListener {
 

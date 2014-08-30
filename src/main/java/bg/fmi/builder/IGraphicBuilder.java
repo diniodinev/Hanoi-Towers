@@ -7,9 +7,9 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.builder;
+package bg.fmi.builder;
 
-import main.java.bg.fmi.composite.Graphic;
+import bg.fmi.composite.Graphic;
 
 public interface IGraphicBuilder {
     public void addSticks();

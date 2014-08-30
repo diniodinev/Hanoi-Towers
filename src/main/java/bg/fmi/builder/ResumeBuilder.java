@@ -8,16 +8,16 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.builder;
+package bg.fmi.builder;
 
 import java.io.File;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import main.java.bg.fmi.composite.Graphic;
-import main.java.bg.fmi.composite.Ring;
-import main.java.bg.fmi.composite.Stick;
+import bg.fmi.composite.Graphic;
+import bg.fmi.composite.Ring;
+import bg.fmi.composite.Stick;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

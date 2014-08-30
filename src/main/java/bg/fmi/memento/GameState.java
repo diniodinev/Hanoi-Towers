@@ -8,9 +8,9 @@
  * Contributors:
  *     Dinio Dinev - initial API and implementation
  ******************************************************************************/
-package main.java.bg.fmi.memento;
+package bg.fmi.memento;
 
-import main.java.bg.fmi.composite.Graphic;
+import bg.fmi.composite.Graphic;
 
 public class GameState {
     // The Graphic object for the drawing the game

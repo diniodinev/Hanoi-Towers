@@ -2,4 +2,4 @@
  * @author %Dinio Dinev%
  *
  */
-package main.java.bg.fmi.hanoi;
+package bg.fmi.hanoi;
